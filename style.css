@@ -1,0 +1,261 @@
+/* Color Palette Settings */
+:root {
+    --bg-color: #f4f7f6;
+    --card-bg: #ffffff;
+    --text-main: #333333;
+    --text-muted: #a0a0a0;
+    --border-color: #333333;
+    --primary: #4a90e2;
+    --success: #2ec4b6;
+    --danger: #e71d36;
+    --warning: #ff9f1c;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="dark"] {
+    --bg-color: #121212;
+    --card-bg: #1e1e1e;
+    --text-main: #f5f5f5;
+    --text-muted: #888888;
+    --border-color: #2a2a2a;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #121212; /* Defaulting to Dark Mode match as image */
+    color: #f5f5f5;
+    transition: background-color 0.3s, color 0.3s;
+    padding: 2rem 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+/* Force dark theme defaults like image layout */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+}
+
+.app-container {
+    width: 100%;
+    max-width: 800px; /* Width expanded slightly to support single line layout smoothly */
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+}
+
+/* Header & Date/Time */
+header {
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1.5rem;
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.btn-toggle {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Clean Left Aligned Clock */
+.datetime-container {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: flex-start; 
+}
+
+#current-date {
+    font-size: 1rem;
+    color: var(--text-muted);
+}
+
+#current-time {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: var(--primary);
+}
+
+/* Form Section (FIXED: Single Line Grid Layout) */
+.form-section {
+    margin-bottom: 2rem;
+}
+
+#task-form {
+    display: grid;
+    grid-template-columns: 2fr 1.5fr 1.2fr auto; /* Distributes items smoothly in 1 line */
+    gap: 0.75rem;
+    align-items: center;
+    width: 100%;
+}
+
+#task-form input, 
+#task-form select, 
+#task-form .btn-add {
+    width: 100%;
+    height: 46px; /* Perfect aligned equal vertical profile */
+    padding: 0 0.8rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background: rgba(255,255,255,0.03);
+    color: var(--text-main);
+    font-size: 0.95rem;
+    outline: none;
+}
+
+#task-form input:focus, 
+#task-form select:focus {
+    border-color: var(--primary);
+}
+
+.btn-add {
+    background: var(--success) !important;
+    color: white !important;
+    border: none !important;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.2s;
+    white-space: nowrap; /* Prevents button text wrapping */
+}
+
+.btn-add:hover {
+    filter: brightness(0.9);
+}
+
+/* Controls & Badges */
+.controls-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.stats-container {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.stat-badge {
+    background: var(--bg-color);
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    border: 1px solid var(--border-color);
+}
+
+.filter-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn-filter {
+    flex: 1;
+    padding: 0.6rem;
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.btn-filter.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+/* Task Cards Output list */
+.task-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.task-item {
+    background: var(--bg-color);
+    border-left: 5px solid var(--primary);
+    padding: 1rem;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid var(--border-color);
+    border-left-width: 5px;
+}
+
+.task-item.priority-high { border-left-color: var(--danger); }
+.task-item.priority-medium { border-left-color: var(--warning); }
+.task-item.priority-low { border-left-color: var(--success); }
+
+.task-item.is-completed {
+    opacity: 0.5;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.task-item.is-completed .task-title {
+    text-decoration: line-through;
+}
+
+.task-details h3 {
+    margin-bottom: 0.25rem;
+    font-size: 1.1rem;
+}
+
+.task-meta {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.task-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn-complete, .btn-delete {
+    padding: 0.4rem 0.8rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+.btn-complete { background: var(--success); color: white; }
+.btn-delete { background: var(--danger); color: white; }
+
+/* Responsive view control for tiny mobile screen devices */
+@media (max-width: 768px) {
+    #task-form {
+        grid-template-columns: 1fr;
+    }
+    .task-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    .task-actions {
+        width: 100%;
+        justify-content: flex-end;
+    }
+}
